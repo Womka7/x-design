@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'X Clone',
       theme: ThemeData(
         useMaterial3: true,
-        brightness: Brightness.dark, // Tema oscuro como X
+        brightness: Brightness.dark,
         scaffoldBackgroundColor: Colors.black,
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.black,
@@ -33,7 +33,8 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin {
+class _MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -60,7 +61,8 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
           ),
         ),
         title: const Image(
-          image: NetworkImage('https://upload.wikimedia.org/wikipedia/commons/5/57/X_logo_2023_%28white%29.png'),
+          image: NetworkImage(
+              'https://upload.wikimedia.org/wikipedia/commons/5/57/X_logo_2023_%28white%29.png'),
           height: 30,
         ),
         centerTitle: true,
@@ -84,14 +86,12 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
       body: TabBarView(
         controller: _tabController,
         children: [
-          // Tab "Para ti"
           ListView.builder(
             itemCount: 5,
             itemBuilder: (context, index) {
               return TweetCard();
             },
           ),
-          // Tab "Siguiendo"
           ListView.builder(
             itemCount: 6,
             itemBuilder: (context, index) {
@@ -109,8 +109,10 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
           BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
           BottomNavigationBarItem(icon: Icon(Icons.edit_square), label: 'Post'),
-          BottomNavigationBarItem(icon: Icon(Icons.group), label: 'Communities'),
-          BottomNavigationBarItem(icon: Icon(Icons.notifications_outlined), label: 'Verified'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.group), label: 'Communities'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.notifications_outlined), label: 'Verified'),
           BottomNavigationBarItem(icon: Icon(Icons.mail), label: 'Messages'),
         ],
         selectedItemColor: Colors.white,
@@ -118,7 +120,10 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
-        child: const Icon(Icons.add),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50), 
+        ),
+        child: Icon(Icons.add),
         backgroundColor: Colors.blue,
       ),
     );
@@ -130,7 +135,8 @@ class TweetCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(color: Colors.grey[800]!, width: 0.5)),
+        border:
+            Border(bottom: BorderSide(color: Colors.grey[800]!, width: 0.5)),
       ),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -146,15 +152,15 @@ class TweetCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
+                  const Row(
                     children: [
-                      const Text(
+                      Text(
                         'Usuario',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      const SizedBox(width: 4),
+                      SizedBox(width: 4),
                       Icon(Icons.verified, color: Colors.blue, size: 16),
-                      const Text(
+                      Text(
                         ' · 2h',
                         style: TextStyle(color: Colors.grey),
                       ),
