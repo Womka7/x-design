@@ -1,3 +1,9 @@
+import 'package:dfwfec/pages/comunity.dart';
+import 'package:dfwfec/pages/dashboard.dart';
+import 'package:dfwfec/pages/grok.dart';
+import 'package:dfwfec/pages/messages.dart';
+import 'package:dfwfec/pages/notification.dart';
+import 'package:dfwfec/pages/search.dart';
 import 'package:flutter/material.dart';
 
 class CustomBottomNav extends StatefulWidget {
@@ -19,7 +25,8 @@ class _CustomBottomNavState extends State<CustomBottomNav> {
       BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
       BottomNavigationBarItem(icon: Icon(Icons.edit_square), label: 'Post'),
       BottomNavigationBarItem(icon: Icon(Icons.group), label: 'Communities'),
-      BottomNavigationBarItem(icon: Icon(Icons.notifications_outlined), label: 'Verified'),
+      BottomNavigationBarItem(
+          icon: Icon(Icons.notifications_outlined), label: 'Verified'),
       BottomNavigationBarItem(icon: Icon(Icons.mail), label: 'Messages'),
     ];
 
@@ -43,9 +50,25 @@ class _CustomBottomNavState extends State<CustomBottomNav> {
           setState(() {
             _selectedIndex = index;
           });
+
+          List<Widget> pages = [
+            Dashboard(),
+            PageSearch(),
+            PageGrok(),
+            PageComunity(),
+            PageNotification(),
+            PageMessages(),
+          ];
+          if (index >= 0 && index < pages.length) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => pages[index]),
+            );
+          }
+
           widget.onItemSelected(index);
         },
-      )
+      ),
     );
   }
 }
