@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 
-class CustomAppBar extends StatelessWidget  {
-  const CustomAppBar({super.key});
+class CustomAppBar extends StatelessWidget {
+  final VoidCallback onAvatarTap;
+  const CustomAppBar({super.key, required this.onAvatarTap});
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: CircleAvatar(
-          backgroundColor: Colors.grey[800],
-          child: const Icon(Icons.person, color: Colors.white),
+      leading: GestureDetector(
+        onTap: onAvatarTap,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: CircleAvatar(
+            backgroundColor: Colors.grey[800],
+            child: const Icon(Icons.person, color: Colors.white),
+          ),
         ),
       ),
       title: const Image(

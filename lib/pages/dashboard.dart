@@ -1,3 +1,4 @@
+import 'package:dfwfec/pages/drawer.dart';
 import 'package:dfwfec/widgets/custom_app_bar.dart';
 import 'package:dfwfec/widgets/custom_bottom_appbar.dart';
 import 'package:dfwfec/widgets/custom_card.dart';
@@ -12,17 +13,15 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> with SingleTickerProviderStateMixin {
   late TabController _tabController;
-
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   void initState() {
     super.initState();
-    // Creas el TabController con 2 tabs y el vsync para manejar animaciones
     _tabController = TabController(length: 2, vsync: this);
   }
 
   @override
   void dispose() {
-    // Siempre debes liberar el controlador cuando ya no lo necesitas
     _tabController.dispose();
     super.dispose();
   }
@@ -30,10 +29,16 @@ class _DashboardState extends State<Dashboard> with SingleTickerProviderStateMix
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          CustomAppBar(),
-          CustomTabBar(
+       key: _scaffoldKey,
+       drawer:const DrawerX(),
+        body: Column(
+          children: [
+          CustomAppBar(
+            onAvatarTap: () {
+              _scaffoldKey.currentState?.openDrawer();
+            },
+          ),
+          CustomTabBar (
             tabController: _tabController,
             tabTitles: ['Para ti', 'Siguiendo'],
           ),
